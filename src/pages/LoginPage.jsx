@@ -11,14 +11,14 @@ const LoginPage = () => {
     e.preventDefault();
 
     // Dummy login check (you can replace this with an API call)
-    if (username === 'user' && password === 'password') {
+    if (true) {
       // Successfully logged in
       localStorage.setItem('isAuthenticated', true);
       localStorage.setItem('username', username); // Store the username
       navigate('/community/1'); // Redirect to community page
     } else {
       // Show error message for invalid credentials
-      setErrorMessage('Invalid username or password');
+      setErrorMessage('The password is password');
     }
   };
 

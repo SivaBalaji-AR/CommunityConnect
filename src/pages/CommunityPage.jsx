@@ -9,8 +9,8 @@ const CommunityPage = () => {
   const navigate = useNavigate(); // Use navigate for redirection
   const [isAuthenticated, setIsAuthenticated] = useState(false); // Authentication state
   const [complaints, setComplaints] = useState([
-    { id: 1, title: 'Streetlight not working', description: 'The streetlight near block A is not working.', upvotes: 10, downvotes: 2, userVote: null },
-    { id: 2, title: 'Garbage not collected', description: 'Garbage has not been collected for 3 days.', upvotes: 8, downvotes: 1, userVote: null },
+    { id: 1, title: 'Streetlight not working', description: 'The streetlight near block A is not working.', upvotes: 0, downvotes: 0, userVote: null },
+    { id: 2, title: 'Garbage not collected', description: 'Garbage has not been collected for 3 days.', upvotes: 0, downvotes: 0, userVote: null },
   ]);
   const [showModal, setShowModal] = useState(false);
 

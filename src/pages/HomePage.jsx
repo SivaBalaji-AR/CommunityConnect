@@ -1,16 +1,16 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import CommunityCard from '../components/CommunityCard';
 import CreateCommunityForm from '../components/CreateCommunityForm';
 
 const HomePage = () => {
-  const [communities, setCommunities] = useState([]);
-  const [isFormOpen, setIsFormOpen] = useState(false);
+  // Initial list of communities
+  const [communities, setCommunities] = useState([
+    { id: 1, name: 'Neighborhood Watch', description: 'Discuss safety and security in your area.' },
+    { id: 2, name: 'Apartment Complex', description: 'Updates and maintenance issues for residents.' },
+    { id: 3, name: 'Local Business Network', description: 'Support and network with local businesses.' },
+  ]);
 
-  // Load communities from localStorage on page load
-  useEffect(() => {
-    const storedCommunities = JSON.parse(localStorage.getItem('communities')) || [];
-    setCommunities(storedCommunities);
-  }, []);
+  const [isFormOpen, setIsFormOpen] = useState(false);
 
   // Open Create Community Form
   const openForm = () => {
@@ -22,15 +22,20 @@ const HomePage = () => {
     setIsFormOpen(false);
   };
 
-  // Add new community to state and localStorage
+  // Add new community to state
   const addCommunity = (newCommunity) => {
-    setCommunities((prevCommunities) => [...prevCommunities, newCommunity]);
+    // Generate a unique ID for the new community
+    const communityWithId = {
+      ...newCommunity,
+      id: communities.length + 1,
+    };
+    setCommunities((prevCommunities) => [...prevCommunities, communityWithId]);
   };
 
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-2xl font-bold mb-4">Your Communities</h1>
-      
+
       {/* Create New Community Button */}
       <button
         onClick={openForm}

@@ -3,9 +3,16 @@ import { useState, useEffect } from 'react';
 
 const Navbar = () => {
       const [isAuthenticated,setIsAuthenticated]=useState(false);
-
+      const [username,setusername]=useState("");
    useEffect(() => {
-           setIsAuthenticated(localStorage.getItem('isAuthenticated'));
+     const intervalId = setInterval(() => {
+      // Update state or perform any action here
+      setIsAuthenticated(localStorage.getItem('isAuthenticated'));
+      setusername(localStorage.getItem('username'));
+    }, 50); // Runs every 1000ms (1 second)
+
+    // Cleanup the interval on component unmount
+    return () => clearInterval(intervalId);
   },);
 
   const handleLogout = () => {
@@ -19,7 +26,7 @@ const Navbar = () => {
       <div>
         {isAuthenticated ? (
           <div className="flex items-center space-x-4">
-            <span className="font-semibold">user</span>
+            <span className="font-semibold">{username}</span>
             <button onClick={handleLogout} className="bg-red-500 text-white px-4 py-2 rounded">
               Logout
             </button>
